@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billspay Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fb;
+      color: #333;
+    }
+
+    header {
+      background-color: #2f3e9e;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .search-bar {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      width: 250px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 1rem 1.5rem;
+      height: 80vh;
+      overflow-y: auto;
+    }
+
+    .card h2 {
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #2f3e9e;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      background-color: #f0f3ff;
+      margin-bottom: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    li:hover {
+      background-color: #dfe6ff;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Billspay Dashboard</h1>
+    <input type="text" id="searchInput" class="search-bar" placeholder="Search billers...">
+  </header>
+
+  <main class="dashboard">
+    <section class="card" id="apiCard">
+      <h2>API Billers</h2>
+      <ul id="apiList">
+        <li>Flashpay</li>
+        <li>SKYPAY API</li>
+        <li>AEON CREDIT SERVICE PHIL INC. API</li>
+        <li>HOME CREDIT API</li>
+        <li>AIR ASIA/ ZEST AIR</li>
+        <!-- ... more API billers will be listed here -->
+      </ul>
+    </section>
+
+    <section class="card" id="regularCard">
+      <h2>Regular Billers</h2>
+      <ul id="regularList">
+        <li>GENTRADE INTERNATIONAL PHILS. INC.</li>
+        <li>ILECO 3</li>
+        <li>EIGHTCHAMP DISTRIBUTION - BUTUAN</li>
+        <li>GOLDEN BRIA HOLDINGS INC</li>
+        <li>FAST UNIMERCHANTS INC.</li>
+        <!-- ... more Regular billers will be listed here -->
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const apiItems = document.querySelectorAll('#apiList li');
+    const regularItems = document.querySelectorAll('#regularList li');
+
+    searchInput.addEventListener('input', function () {
+      const filter = this.value.toLowerCase();
+
+      apiItems.forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
+
+      regularItems.forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
